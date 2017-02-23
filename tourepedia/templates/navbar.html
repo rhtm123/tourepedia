@@ -1,0 +1,211 @@
+
+<nav class="navbar navbar-default row navbar-fixed-top">
+  
+    <div class="navbar-header col-md-3">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+
+      <a class="navbar-brand" href="/"> 
+
+          <img src="{{ STATIC_URL }}img/logo.png" alt="Tourepedia">
+      </a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="col-md-9">
+
+            <ul class="nav navbar-nav navbar-right text-center">
+               <li class="dropdown dropdown-large">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">TOUR PACKAGES<b class="caret"></b></a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-large row vdivide">
+
+                    <li class="col-md-3 text-center">
+                      <ul>
+                        <li><a href="/tour-packages/category/family/">Family Trip</a></li>
+                        
+                        <li><a href="/tour-packages/category/honeymoon/">Honeymoon Packages</a></li>
+                        <li><a href="/tour-packages/category/adventure/"> Adventure </a> </li>                        
+                      </ul>
+
+                    </li>
+                    
+                  
+                    <li class="col-md-3 text-center">
+                      <ul>
+                        
+                        
+                        <li><a href="/places/kerala/tour-packages/">Kerala Tour Packages</a></li>
+                        <li><a href="/places/goa/tour-packages/">Goa Tour Packages</a></li>
+                        <li><a href="/places/rajasthan/tour-packages/">Rajasthan Tour Packages</a></li>
+                        
+                        
+                      </ul>
+                    </li>
+                    <li class="col-md-3 text-center">
+                      <ul>
+                        <li><a href="/places/shimla/tour-packages/"> Shimala Tour Packages</a></li>
+                
+                                
+                      </ul>
+                    </li>
+                    
+                    <li class="col-md-3 text-center">
+                      <ul>
+                        <li><a href="places/agra/tour-packages/">Agra Tour Packages</a></li>
+                        <li><a href="/places/darjeeling/tour-packages/">Darjeeling Tour Packages</a></li>
+                        <li><a href="/places/andaman/tour-packages/">Andaman Tour Packages</a></li>
+                         
+                      </ul>
+                    </li> 
+                </ul>  
+              </li>
+
+
+
+              <li class="dropdown dropdown-large">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">DESTINATIONS <b class="caret"></b></a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-large row vdivide">
+                    
+                    <li class="col-sm-4 text-center">
+                      <ul>
+                        
+                        <li><a href="/places/agra/tour-packages/">Agra</a></li>
+                        <li><a href="/places/rajasthan/tour-packages/"> Rajasthan</a></li>
+                        <li><a href="/places/agra/tour-packages/"> Jammu & Kasmir </a> </li>
+                      </ul>
+
+                    </li>
+                    <li class="col-sm-4 text-center">
+                      <ul>
+                       
+                        <li><a href="/places/andaman/tour-packages/">Andaman</a></li>
+                        <li><a href="/places/agra/tour-packages/">West Bengal</a></li>
+                        
+                      </ul>
+                    </li>
+
+                    <li class="col-sm-4 text-center">
+                      <ul>
+                        <li><a href="/places/goa/tour-packages/">Goa</a></li>
+                        <li><a href="/places/andaman/tour-packages/">Tamil Nadu</a></li>
+                        <li><a href="/places/andaman/tour-packages/">Andhra Pradesh</a></li>
+    
+                      </ul>
+                    </li>
+
+
+                    <li class="col-sm-4 text-center">
+                      <ul>
+                        <li><a href="/places/andaman/tour-packages/">Rajasthan</a></li>
+                        <li><a href="/places/andaman/tour-packages/">Uttar Pradesh</a></li>
+                        <li><a href="/places/andaman/tour-packages/">Gujarat</a></li>
+    
+                      </ul>
+                    </li>
+
+
+                </ul>  
+              </li>
+
+
+
+
+              <li class="dropdown dropdown-large">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> CATEGORIES <b class="caret"></b></a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-large row vdivide">
+                    
+                    <li class="col-sm-6 col-md-6 text-center">
+                      <ul>
+                       
+                        <li><a href="/tour-packages/category/adventure/">Adventure</a></li>
+                        <li><a href="/tour-packages/category/family/"> Family</a></li>
+                        <li><a href="/tour-packages/category/nature/"> Nature </a> </li>
+
+
+                        <li><a href="/tour-packages/category/honeymoon/">Honeymoon</a></li>
+                        <li><a href="/tour-packages/category/wildlife/"> Wildlife</a></li>
+                        <li><a href="/tour-packages/category/hill-station/">Hill Stations</a></li>
+
+                        <li><a href="/tour-packages/category/religious/"> Religious & Spiritual </a> </li>
+
+                        <li><a href="/tour-packages/category/beaches/">Water Activities</a></li>
+                        
+                       
+
+                      </ul>
+
+                    </li>
+                    <li class="col-sm-6 col-md-6 text-center">
+                      <ul>
+                        <li class="dropdown-header">Popular Tours</li>
+                        <li class="divider"></li>
+                        <li><a href="/tours/valley-of-flowers/">Valley of Flowers</a></li>
+                        
+                      </ul>
+                    </li>
+                </ul>  
+              </li>
+
+
+
+
+              <li><a href="/school-trips">SCHOOL TRIPS</a></li>
+              <li><a href="/blog">BLOG</a></li>
+            
+           
+
+              <li class="dropdown dropdown-large">
+
+                  {% if user.is_authenticated %}
+                  <li class="dropdown dropdown-large">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ user.username }} <b class="caret"></b></a>
+                      
+                      <ul class="dropdown-menu dropdown-menu-large row vdivide">
+                        
+                        <li class=" text-center">
+                          <ul>
+                           
+                            <li class="dropdown-header"><p> logged in as <b>{{ user.username }}</b></p></li>
+                            <li class="divider"></li>
+                            <li><a href="/accounts/logout"> Logout</a></li>
+                            
+                           
+
+                          </ul>
+
+                        </li>
+                    </ul>  
+                  </li>
+
+                  {% else %}
+
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-large row vdivide">
+                  
+                    <li>
+                      <ul class="text-center">
+                     
+                        <li><a href="/accounts/register/">Register Here</a></li>
+                        <li><a href="/accounts/login/">Login</a></li>
+                      
+                      </ul>
+
+                    </li>
+                </ul>  
+
+                  {% endif %}
+                  
+            </li>
+  
+            </ul>
+        </div>
+    </div>
+  
+</nav>

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block static %}
+<style type="text/css">
+	.scroll {
+		height: auto;
+        max-height: 200px;
+        overflow-x: hidden;
+	}
+	.form-group .col-sm-6{
+		margin:0;
+		padding: 0;
+	}
+</style>
+{% endblock %}
+
+{% block body %}
+<body>
+
+{% include 'admin_nav.html' %}
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="container-fluid text-center">
+	<h3> Search any quote </h3>
+	<div class="row">
+	<br>
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+		    <div class="form-group">
+					{% csrf_token %}
+					<input id="search" name="search" class="form-control input-md" placeholder="Search for Quote" />
+					<ul id="search_results" class="scroll list-group" style="list-style: none;"> </ul>
+			</div>
+		</div>
+		<div class="col-sm-3"></div>
+
+	</div>
+</div>
+
+<br>
+<hr>
+
+<div class="container-fluid text-center">
+	<h3>Recent Quotes</h3>
+	<br>
+	{% for tripdetail in tripdetails %}
+	<a href="/travel-triangle/quote/{{ tripdetail.trip_id }}">{{ tripdetail.trip_id }}</a>
+	{% endfor %}
+</div>
+
+
+
+<br>
+
+<hr>
+
+
+<div class="container-fluid">
+	<div class="text-center">
+		<h3>Creat new quote</h3>
+		<br>
+	</div>
+	<div class="row">
+
+		<div class="col-sm-12 col-md-3"></div>
+
+		<div class="col-sm-12 col-md-6">
+			<div class="panel-body">
+				<form class="text-center" id="quote_form" method="post" action=""
+				                        enctype="multipart/form-data">
+				    {% csrf_token %}
+
+					<div class="form-group">
+						<div class="col-sm-6">
+						<input id="id_trip_id" name="trip_id" type="number" class="form-control input-sm" placeholder="Trip Id" />
+						</div>
+						<div class="col-sm-6">
+							<input id="person_name_id" type="text" name="person_name" class="form-control input-sm" placeholder="Traveler Name" />
+						</div>
+						<br>
+					</div>
+
+
+					<input type="submit" name="quote_form" value="Submit" class="btn btn-info btn-block">
+				
+				</form>
+
+
+			</div>
+		</div>
+
+		<div class="col-sm-12 col-md-3"></div>
+
+	</div>
+
+</div>
+
+<br>
+<br>
+
+
+{% endblock %}
+
+{% block script %}
+	<script type="text/javascript">
+        $(function(){
+            $('#search').keyup(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "travel-triangle/quote/search/",
+                    data: {
+                        'search_text' : $('#search').val(),
+                        'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+                    },
+                    success: searchSuccess,
+                    data_type: 'html'
+                });
+            });
+        });
+
+        function searchSuccess(data, textStatus, jqXHR)
+        {
+            $('#search_results').html(data);
+        }
+
+    </script>
+{% endblock %}
+

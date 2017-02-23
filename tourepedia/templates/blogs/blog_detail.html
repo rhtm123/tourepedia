@@ -1,0 +1,272 @@
+{% extends 'blog_base.html' %}
+
+{% block title %} {{ title.header }} {% endblock %}
+
+{% block static %}
+
+{% endblock %}
+ 
+
+
+
+{% block body %}
+{% include 'blog_nav.html' %}
+
+
+{% load humanize %}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=610841029097593";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+<div>
+   
+    
+      <div>
+        <img src="{{ MEDIA_URL }}{{ title.head_img }}" class="img-responsive" style="opacity: 1;" width="1600" height="800" alt="{{ title.header }}">
+        <div class="text-center">
+
+       <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 header-mar">
+                      
+                      <h1 style="color:#fff"><strong> {{ title.header }} </strong></h1>
+                      <h4 style="color:#fff"><strong>{{ title.publisher }}</strong> | {{ title.pub_date }}</h4>
+        </div> 
+
+        </div>    
+    </div>
+   
+</div>
+<br>
+<br>
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-8">
+            <div class="row">
+                  
+                <div class="col-sm-12">
+                    <div class="col-sm-2 mar">
+                    <a href="http://www.facebook.com/sharer.php?u=http://www.tourepedia.com/blog/{{ title.slug }}" target="_blank">
+                                
+                                                       
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                        
+                    </a>
+                    </div>
+                    <div class="col-sm-2 mar">
+                     <a href="https://twitter.com/share?url=http://www.tourepedia.com/blog/{{ title.slug }}&amp;text={{ title.slug }} &amp;hashtags=thrilloaxblog" target="_blank">
+
+                        
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        
+                    </a>
+                    </div>
+
+
+                    <div class="col-sm-2 mar">
+                    <a href="https://plus.google.com/share?url=http://www.tourepedia.com/blog/{{ title.slug }}" target="_blank">
+                        
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                       
+                    </a>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="col-sm-2 mar">
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.tourepedia.com/blog/{{ title.slug }}" target="_blank">
+                        
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                    
+                   </a>
+                   </div>
+               </div>
+
+            </div>
+            <br>
+            <br>
+            <hr>
+            
+            {% if title.content %}
+
+            {{  title.content|safe }}
+            
+            {% endif %}
+
+            <br>
+
+            <div class="row">
+                      
+                    <div class="col-sm-12">
+                        <div class="col-sm-2 mar">
+                        <a href="http://www.facebook.com/sharer.php?u=http://www.tourepedia.com/blog/{{ title.slug }}" target="_blank">
+                                    
+                                                           
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                            
+                        </a>
+                        </div>
+                        <div class="col-sm-2 mar">
+                         <a href="https://twitter.com/share?url=http://www.tourepedia.com/blog/{{ title.slug }}&amp;text={{ title.slug }} &amp;hashtags=thrilloaxblog" target="_blank">
+
+                            
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            
+                        </a>
+                        </div>
+
+
+                        <div class="col-sm-2 mar">
+                        <a href="https://plus.google.com/share?url=http://www.tourepedia.com/blog/{{ title.slug }}" target="_blank">
+                            
+                                    <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                           
+                        </a>
+                        </div>
+
+                        <!-- LinkedIn -->
+                        <div class="col-sm-2 mar">
+                        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.tourepedia.com/blog/{{ title.slug }}" target="_blank">
+                            
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                        
+                       </a>
+                       </div>
+                   </div>
+
+                </div>
+        <br>
+        <br>
+        
+        <hr>
+        <br>
+        
+
+            <div class="row">
+
+                <div class="col-sm-12 col-md-3"></div>
+                
+                <div class="col-sm-12 col-md-6 ">
+                    <div class="card card-2 text-center">
+                    {% if subscribed %}
+
+                    <h3> Thank you !!</h3>
+                    {% else %}
+
+                    <h3>Subscribe to newsletter</h3>
+                        <form class="form-inline"  action="/blog/{{ title.slug }}/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group" style="padding-bottom:3px;">
+                            <label>Email:</label>
+                            <input id="id_subscriber_email" maxlength="254" name="subscriber_email" type="email" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info" name="subscribe_form" value="Register" />
+                        </div>
+                        </form>
+
+                    {% endif %}
+                        <br>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3">               
+                </div>      
+            </div>
+        <hr>
+        <div class="fb-comments" data-href="http://www.tourepedia.com/blog/{{ title.slug }}" data-width="832" data-numposts="5">
+        </div>
+
+        <br>
+        <br>
+        <div class="row">
+        <h3 class="text-center">Related Blogs</h3>
+        <hr>
+        <br>
+
+
+
+            {% for related_title in related_titles %}
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+            
+                <div class="card card-2 hg-229">
+                    <a href="/blog/{{ related_title.slug }}"><figure> <img src="{{ MEDIA_URL }}{{ related_title.head_img }}" class="img-responsive" height="250" width="500" alt="{{ related_title.header }}"> </figure>
+                    <div style="padding:0.3em">
+
+                        {% if related_title.header|length >= 50 %}
+                        <h5> <strong>{{ related_title.header|slice:":50" }}..</strong> </a></h5>
+
+                        {% else %}
+                        <h5> <strong>{{ related_title.header }}</strong> </a></h5>
+
+                        {% endif %}
+                        
+                        <h6> {{ related_title.publisher }} | {{ related_title.pub_date|date|naturaltime }}</h6>
+                        <h6><strong> {{ related_title.expected_time }} min read </strong></h6>
+                    
+                    </div>
+                </div>
+            </div>
+             {% endfor %}
+
+        </div>
+
+        <br>
+        <div class="row">
+        <h3 class="text-center">Recent blogs by {{ title.publisher }}</h3>
+        <hr>
+        <br>
+             {% if related_titles_by_author %}
+             {% for related_title in related_titles_by_author %}
+             <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="card card-1 hg-229">
+                        <a href="/blog/{{ related_title.slug }}"><figure> <img src="{{ MEDIA_URL }}{{ related_title.head_img }}" class="img-responsive" height="250" width="500" alt="{{ related_title.header }}"> </figure>
+                        <div style="padding:0.3em">
+
+
+                        {% if related_title.header|length >= 50 %}
+                        <h5> <strong>{{ related_title.header|slice:":50" }}..</strong> </a></h5>
+
+                        {% else %}
+                        <h5> <strong>{{ related_title.header }}</strong> </a></h5>
+
+                        {% endif %}
+
+                        <h6> {{ related_title.publisher }} | {{ related_title.pub_date|date|naturaltime }}</h6>
+                        <h6><strong> {{ related_title.expected_time }} min read </strong></h6>
+
+                        </div>
+                    </div>
+              </div>
+             {% endfor %}
+             {% else %}
+
+             <p class="text-center"> No other blogs by {{ title.publisher }} </p>
+             {% endif %}             
+        </div>
+        </div>
+        <div class="col-sm-3">
+            <form class="text-center" id="interested_form" method="post" action="/blog/{{ title.slug }}/"
+                                        enctype="multipart/form-data">  
+            {% csrf_token %}
+            {{ interested_form }}
+            <input type="submit" name="interested_form" class="btn">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+{% include 'blog_footer.html' %}
+{% endblock %}
+
+
+{% block script %}{% endblock %}

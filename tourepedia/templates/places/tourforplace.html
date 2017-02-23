@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ placedetail.place_name }} Trip Packages {% endblock %}
+
+
+
+
+{% block body %}
+<body>
+{% load humanize %}
+
+
+{% include 'navbar.html' %}
+
+
+
+<br>
+
+<div class="container-fluid text-center">
+    <br><br>
+    <h2>{{ placedetail.place_name }} Tour Packages</h2>
+    <hr>
+    <br>
+    <div class="row">
+    {% if tourdetails %} 
+        {% for tourdetail in tourdetails %}
+            <div class="col-sm-4">
+            
+              <div class="thumbnail card card-1">
+              
+                  <a href="/tour-packages/{{ tourdetail.slug }}">
+                    <img src="{{ MEDIA_URL }}{{ tourdetail.main_img }}" class="person" alt="" width="auto" height="auto">
+                  
+                  <h4 class="text-center"><strong>{{ tourdetail.tour_name }} </strong></h4>
+                  </a>
+                  <div class="pad">
+                    <p> <strong>{{ tourdetail.tour_tagline }}</strong></p>
+                    <hr>
+                    <p> {{ tourdetail.tour_detail|slice:":600" }}....</p>
+                    <hr>
+                    <div class="col-sm-6 text-left"> <h4> Number of days: {{ tourdetail.number_days }} </h4> </div>
+                     
+                    <div class="col-sm-6 text-right"> <h4>Price: ₹ {{ tourdetail.tour_price|intcomma }} </h4></div>
+                    
+              </div>
+            
+            </div>
+            
+    
+        {% endfor %}
+    {% else %} 
+    <strong> kuch bhi nhi hai </strong>
+    {% endif %}
+<br>
+
+            
+</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+{% include 'footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+

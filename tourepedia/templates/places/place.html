@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ placedetail.place_name }} {% endblock %}
+
+{% block static %}
+<style>
+  body {
+      position: relative;
+  }
+  .affix {
+      top:0;
+      width: 100%;
+      z-index: 9999 !important;
+  }
+  .navbar {
+      margin-bottom: 0px;
+  }
+
+  .affix ~ .container-fluid {
+     position: relative;
+     top: 50px;
+  }
+
+  .justify {
+    text-align: justify;
+  }
+
+  @media screen and (max-width: 768px){
+ .header-mar {margin-top:-10em;} 
+ }
+
+@media screen and (min-width: 768px){
+  .header-mar {margin-top:-26em;}
+   .back {
+    background-color: rgba(12,75,51,0.2);
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 10px 0px;
+   }
+
+   h1 {
+  font-family: 'Droid Serif', serif;
+  font-weight: 100;
+  color: #fff;
+  font-size: 50px;
+}
+}
+
+.navbar-brand {
+  padding-right:  10px;
+  color: rgb(12,75,51);
+}
+.navbar-brand:hover {
+  color: rgb(12,75,51);
+}
+
+.form-s {
+  padding: 1em;
+}
+
+
+  </style>
+
+{% endblock %}
+
+
+<!-- block body start here-->
+{% block body %}
+<body data-spy="scroll" data-target=".navbar1">
+{% load humanize %}
+
+{% include 'navbar.html' %}
+
+<div>    
+      <div class="thumbnail">
+        <img src="{{ MEDIA_URL }}/{{ placedetail.main_img }}" class="img-responsive" width="1600" height="800" alt="{{ placedetail.place_name }}">
+        <div class="text-center">
+
+       <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 header-mar">
+                    <div class="back">
+                      <h1 style="color:#fff"> {{ placedetail.place_name }} </h1>
+                      <p style="color:#fff"><strong>{{ placedetail.place_tagline }}</strong></p>
+                    </div>
+        </div> 
+
+        </div>      
+    </div>   
+</div>
+<nav class="navbar1 navbar-inverse" data-spy="affix" data-offset-top="700">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand">
+            <a href=""><b>{{ placedetail.place_name }}</b></a>
+        </div>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar1">
+        <ul class="nav navbar-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#placetovisit">Place to Visit</a></li>
+          <li><a href="#placetoeat">Places to Eat</a></li>
+          <li><a href="#howtoreach">How to Reach</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#tours">Tour Packages</a></li>
+        
+        </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-9 col-lg-9">
+        <div id="about" class="container-fluid">
+          <br>
+          <h3>{{ placedetail.place_name }} : {{ placedetail.place_tagline }}</h3>
+          <hr>
+          <p class="justify">{{ placedetail.place_detail|linebreaksbr|safe }}</p>
+        </div>
+        <div id="placetovisit" class="container-fluid">
+          <br>
+          <h3>Places to Visit </h3>
+          <hr>
+          {% if placetovisit %}
+            {% for placetovisit in placetovisit %}
+            <h4><b>{{ placetovisit.attraction_name }}</b></h4>
+            <p class="justify">{{ placetovisit.attraction_detail }}</p>
+            <br>
+
+            {% if placetovisit.attraction_img %}
+              <img src="{{ MEDIA_URL }}{{ placetovisit.attraction_img }}" class="img-responsive">
+            {% endif %}
+
+            
+              <p>{% if placetovisit.credit_name %}Image Credits: {{ placetovisit.credit_name }}{% endif %} {% if placetovisit.credit_url %}<a href="{{ placetovisit.credit_url }}" target="_blank">Image link</a> {% endif %}
+              {% if placetovisit.licence_type %}UNDER LICENCE- <a href="{{ placetovisit.licence_type }}" target="_blank">license link</a>{% endif %}</p>
+              <br>
+            
+
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div id="placetoeat" class="container-fluid">
+          <br>
+          <h3>Places to Eat </h3>
+          <hr>
+          {% if placetoeat %}
+            {% for placetoeat in placetoeat %}
+            <h4><b>{{ placetoeat.name }}</b></h4>
+            <p class="justify">{{ placetoeat.detail }}</p>
+
+            {% endfor %}
+          {% endif %}
+          
+        </div>
+        <div id="howtoreach" class="container-fluid">
+          <br>
+          <h3>How to Reach</h3>
+          <hr>
+          {% if howtoreach %}
+            {% for howtoreach in howtoreach %}
+            <h4><b>{{ howtoreach.transpotation_type }}</b></h4>
+            <p class="justify">{{ howtoreach.detail }}</p>
+
+            {% endfor %}
+          {% endif %}
+          
+        </div>
+        <div id="articles" class="container-fluid">
+          <h3>Articles related to {{ placedetail.place_name }}</h3>
+          <hr>
+          <br>
+          {% if relatedblogs %}
+            {% for relatedblog in relatedblogs %}
+              <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+                <div class="card card-1">
+                      <a href="/blog/{{ relatedblog.title.slug }}"><figure> <img src="{{ MEDIA_URL }}{{ relatedblog.title.head_img }}" class="img-responsive" height="250" width="500" alt="{{ relatedblog.title.header }}"> </figure>
+                      <div style="padding:0.3em">
+                      {% if relatedblog.title.header|length >= 50 %}
+                      <h5> <strong>{{ relatedblog.title.header|slice:":50" }}..</strong> </a></h5>
+                      {% else %}
+                      <h5> <strong>{{ relatedblog.title.header }}</strong> </a></h5>
+
+                      {% endif %}
+                      <h6> Published by <strong> {{ relatedblog.title.publisher }} </strong>  | {{ relatedblog.title.pub_date|naturaltime }}|<strong> {{ relatedblog.title.expected_time }} read </strong></h6> 
+                      </div>
+                    </div>
+              </div>
+            {% endfor %}
+          {% else %}
+          <p>There is no blog yet. </p>
+          {% endif %}
+        </div>
+        <div id="tours" class="container-fluid">
+          <h3>{{ placedetail.place_name }} Tour packages</h3>
+          <hr>
+          <br>
+          {% if tours %}
+              {% for tour in tours %}
+                  <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+                    <div class="thumbnail card card-1">
+                
+                    <a href="/tour-packages/{{ tour.slug }}">
+                      <img src="{{ MEDIA_URL }}{{ tour.main_img }}" class="person" alt="" width="auto" height="auto">
+                    
+                    <h4 class="text-center">{{ tour.tour_name }}</h4>
+                    </a>
+                    <div class="pad">
+                      <p> <strong>{{ tour.tour_tagline }}</strong></p>
+                      <hr>
+
+                    </div>
+                      <div class="col-sm-6 text-left"> <h5> Number of days: {{ tour.number_days }} </h5> </div>
+                       
+                      <div class="col-sm-6 text-right"> <h5>Price: ₹ {{ tour.tour_price|intcomma }} </h5></div>
+
+                </div>
+                    
+
+                  </div>
+
+              {% endfor %}
+          {% else %}
+          <p>No tour package found.</p>
+          {% endif %}
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-3 col-lg-3">
+    <br><br>
+      <div class="text-center card card-2 form-s">
+        {% if interested %}
+              <br>
+              <strong>Thank you for response. Tourepedia team will contact you soon!!</strong>         
+        {% else %}
+            <div>
+              
+              <h4>  Interested in {{ placedetail.place_name }} </h4>
+              <br>
+              <form id="place_form" class="form-group" method="post" action="/places/{{ placedetail.slug }}/"
+                        enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                     <div class="form-group">
+                        
+                        <input id="id_name" maxlength="250" name="name" type="text" class="form-control input-sm" placeholder="Your Name" />
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <input id="id_email" maxlength="254" name="email" type="email" class="form-control input-sm" placeholder="Your Email"/>
+                    </div>
+
+                    <div class="form-group">
+                      
+                        <input id="id_mobile" maxlength="12" name="mobile" type="text" class="form-control input-sm" placeholder="Mobile Number" />
+                    </div>
+
+
+                    <input type="submit" class="btn btn-info" name="submit" value="Submit" />
+              </form>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+{% include 'footer.html' %}
+
+<!--body endblock-->
+{% endblock %}  
+
+{% block script %} {% endblock %}

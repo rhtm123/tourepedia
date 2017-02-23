@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		.list-group-item {
+    position: relative;
+    display: block;
+    padding: 5px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+	</style>
+</head>
+<body>
+	{% if searchs.count > 0 %}
+	{% for search in searchs %}
+		<li class="search list-group-item"><a href="/tour-packages/{{ search.slug }}">{{ search.tour_name }}</a></li>
+	{% endfor %}
+	{% else %}
+	<br>
+	<p>Nothing to show</p>
+
+	{% endif %}
+</body>
+</html>

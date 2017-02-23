@@ -1,0 +1,527 @@
+{% extends 'base.html' %}
+{% block static %}
+	<style type="text/css">
+		
+	.bg-colr{
+		background-color: rgb(236, 248, 244);
+		margin: 5px;
+		padding: 15px; 
+	}
+	.bg-colr1{
+		background-color: black;
+	}
+	hr {
+		border-top: 1px solid #fff;
+	}
+
+	.red_colr .btn{
+		background-color: red;
+	}
+
+	.glyphicon-pencil {
+		color: #fff;
+		padding-right: 7px;
+	}
+	.pad {
+		padding: 20px;
+	}
+
+	.form-bg {
+		background-color: rgb(236, 248, 244);
+		padding: 15px;
+	}
+
+	</style>
+{% endblock %}
+
+
+{% block body %}
+<body>
+
+{% include 'admin_nav.html' %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4 text-left"> 
+			<h4>TRIP ID : <b>{{ tripdetail.trip_id }} | {{ tripdetail.person_name }}</b></h4>
+		</div>
+		
+
+		<div class="col-md-4 text-center">
+			<h4>Go to Travel Triangle <a href="http://traveltriangle.com/requested_trips/{{ tripdetail.trip_id }}" target="_blank"> link</a></h4>
+		</div>
+
+
+
+		<div class="col-md-4 text-right">
+			{% for comment in comment %}
+			<h4>TRIP STATUS : <button type="button" class="btn btn-info"><b>{{ comment.trip_status }}/ {{ comment.interested_status }} </b></button></h4>
+			{% endfor %}
+		</div>
+	
+	</div>
+</div>
+
+
+
+<!-- ######################Afterbook ##+++++++++ -->
+
+<br>
+<div class="container-fluid">
+	<div class="row bg-colr">
+	{% for comment in comment %}
+		{% if comment.trip_status == "Booked With Us" %}
+		
+			<div class="col-lg-12">
+						<div class="row">
+			              	<div class="col-lg-2">
+			              		<p>Traveler: {{ tripdetail.person_name }}</p>
+			              	</div>
+			              	<div class="col-lg-2">
+			              		<p>Email: {{ tripdetail.email }}</p>
+			              	</div>
+			              	<div class="col-lg-2">
+			              		<p>Mobile: {{ tripdetail.mobile|phone2numeric }}</p>
+			              	</div>
+			              	<div class="col-lg-2">
+		              			<p>Trip nights: {{ tripdetail.trip_nights }}</p>
+		              		</div>
+		              		<div class="col-lg-2">
+		              			<p>Start Day: {{ tripdetail.start_day }}</p>
+		              		</div>
+
+		              	</div>
+		      
+		              	
+
+		              	<div class="row">
+		              		<div class="col-lg-2">
+		              			<p>Source: {{ tripdetail.source }}</p>
+		              		</div>
+
+		              		<div class="col-lg-2">
+		              			<p>Destinations: {{ tripdetail.places }}</p>
+		              		</div>
+		              		<div class="col-lg-2">
+		              			<p># adults: {{ tripdetail.number_of_adults }}</p>
+		              		</div>
+		              		<div class="col-lg-2">
+		              			<p># Children: {{ tripdetail.number_of_children }}</p>
+		              		</div>
+
+		              		<div class="col-lg-2">
+		              			{% if tripdetail.mobile %}
+								<div>
+								<a class="btn" href="/travel-triangle/quote/{{ tripdetail.trip_id }}/info-edit/"><span class="glyphicon glyphicon-pencil"></span>Change Traveler info</a>
+								</div>
+								
+								
+								{% else %}
+								<div class="red_colr">
+								<a class="btn" href="/travel-triangle/quote/{{ tripdetail.trip_id }}/info-edit/"><span class="glyphicon glyphicon-pencil"></span>Jaldi se Traveler Info bharo!</a>
+								</div>
+								
+
+								{% endif %}
+		              		</div>
+		              		
+		              	</div>
+
+
+		              	
+		    </div>
+		    
+
+		    <!-- ##################### booked trip ############# -->
+		    <div class="col-lg-12">
+		    
+		    {% if bookedtrip %}
+				<div class="">
+				<br>
+				<hr>
+
+				{% for bookedtrip in bookedtrip %}
+					<p class="text-center"><b>Total Quoted Price: {{ bookedtrip.quoted_price }}
+					Expected Expences: {{ bookedtrip.total_expences }}</b></p>
+				
+				{% endfor %}
+				<hr>
+				</div>
+			{% else %}
+			
+
+
+
+			<form class="text-center" id="booked_trip_form" method="post" action=""
+				                        enctype="multipart/form-data">	
+			{% csrf_token %}
+			{{ booked_trip_form }}
+			<input type="submit" name="booked_trip_form" class="btn">
+			</form>
+
+			{% endif %}
+
+			<br>
+
+
+			</div>
+			
+			<!-- #####################hotel###################### -->
+			<div class="col-lg-12">
+						<div class="panel panel-default">
+			            <div class="panel-heading" role="tab" id="headingOne">
+			                <h4 class="panel-title">
+			                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#hotel" aria-expanded="true" aria-controls="hotel">
+			                   <span><i class="glyphicon glyphicon-plus"></i> </span>
+			                  </a>
+			                 
+			                  <span class="text-right"> BOOKED HOTELS</span>
+
+			                </h4>
+
+			                
+			            </div>
+			            <div id="hotel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			                <div class="panel-body pad">
+			                	<form class="text-left form-bg" id="booked_hotel_form" method="post" action="" enctype="multipart/form-data">
+								{% csrf_token %}
+								{{ booked_hotel_form }}
+								<input type="submit" name="booked_hotel_form" class="btn">
+								</form>
+								<br>
+
+
+								<div class="form-bg">
+			                 	{% if bookedhotel %}
+									{% for bookedhotel in bookedhotel %}
+
+									<hr>
+									<p><b>{{ bookedhotel.hotel.hotel_name }} </b>| Total Cost:<b>{{ bookedhotel.total_price }}</b> ( {{ bookedhotel.room_numbers }} rooms, {{ bookedhotel.room_type }},{{ bookedhotel.hotel_nights }} nights ), Payment done this time: <b>{{ bookedhotel.price_paid }} </b>. {% if bookedhotel.payment_reciept %} Mail has been sent to hotel and you with attached file <a href="{{ MEDIA_URL }}{{ bookedhotel.payment_reciept }}" target="_blank">payment recipt</a>{% endif %} {% if bookedhotel.booking_confirmation_received == True %}
+									Confirmation mail has been recieved by Tourepedia.
+									{% endif %}---{{ bookedhotel.pub_date }}</p>
+
+
+
+									{% endfor %}
+								{% endif %}
+								</div>
+			                  
+			                   
+			                </div>
+			            </div>
+		            </div>
+			</div>
+			
+			<!-- ################################## Booked car ###################### -->
+
+			<div class="col-lg-12">
+						<div class="panel panel-default">
+			            <div class="panel-heading" role="tab" id="headingOne">
+			                <h4 class="panel-title">
+			                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#car" aria-expanded="true" aria-controls="car">
+			                   <span><i class="glyphicon glyphicon-plus"></i> </span>
+			                  </a>
+			                 
+			                  <span class="text-right"> BOOKED CAR</span>
+			                </h4>
+
+			                
+			            </div>
+			            <div id="car" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			                <div class="panel-body pad">
+
+			                <form class="text-center form-bg" id="booked_car_form" method="post" action="" enctype="multipart/form-data">
+								{% csrf_token %}
+								{{ booked_car_form }}
+								<input type="submit" name="booked_car_form" class="btn">
+							</form>
+							<br>
+
+							<div class="form-bg">
+			                {% if bookedcar %}
+								{% for bookedcar in bookedcar %}
+								<p>Booked Car : {{ bookedcar.car_name }}, Concerned Person : {{ bookedcar.concerned_person }} | Total Price : <b>{{ bookedcar.total_price }}</b>, Price Paid by this time : <b>{{ bookedcar.price_paid }}</b> ---{{ bookedcar.pub_date }}</p>
+								{% endfor %}
+							{% endif %}
+							</div>
+			                  
+			                   
+			                </div>
+			            </div>
+		            </div>
+			</div>
+
+
+
+			<!-- ################################## Booked Travel ###################  -->
+
+			<div class="col-lg-12">
+						<div class="panel panel-default">
+			            <div class="panel-heading" role="tab" id="headingOne">
+			                <h4 class="panel-title">
+			                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#travel" aria-expanded="true" aria-controls="travel">
+			                   <span><i class="glyphicon glyphicon-plus"></i> </span>
+			                  </a>
+			                 
+			                  <span class="text-right">BOOKED TRAVEL</span>
+			                </h4>
+
+			                
+			            </div>
+			            <div id="travel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			                <div class="panel-body pad">
+
+			               
+							<form class="text-center form-bg" id="booked_travel_form" method="post" action=""
+								                        enctype="multipart/form-data">	
+							{% csrf_token %}
+							{{ booked_travel_form }}
+							<input type="submit" name="booked_travel_form" class="btn">
+							</form>
+							<br>
+
+							<div class="form-bg">
+			                  
+			                {% if bookedtravel %}
+								{% for bookedtravel in bookedtravel %}
+									<p> Flight Needed : {{ bookedtravel.flight_booked }}, Money paid for Flight :<b> {{ bookedtravel.price_paid_for_flight }}</b> | Train needed : {{ bookedtravel.train_booked }}, Money paid for Trains : <b>{{ bookedtravel.price_paid_for_train }}</b> ----{{ bookedtravel.pub_date }}</p>
+								{% endfor %}
+							{% endif %}
+							</div>
+							</div>
+			            </div>
+		            </div>
+			</div>
+
+
+
+			<!-- #################################Other Booking ##################### -->
+
+			<div class="col-lg-12">
+						<div class="panel panel-default">
+			            <div class="panel-heading" role="tab" id="headingOne">
+			                <h4 class="panel-title">
+			                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#other" aria-expanded="true" aria-controls="other">
+			                   <span><i class="glyphicon glyphicon-plus"></i> </span>
+			                  </a>
+			                 
+			                  <span class="text-right">OTHER BOOKINGS</span>
+			                </h4>
+
+			                
+			            </div>
+			            <div id="other" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			                <div class="panel-body pad">
+			                	<form class="text-center form-bg" id="otherbooking_form" method="post" action="" enctype="multipart/form-data">
+									{% csrf_token %}
+									{{ otherbooking_form }}
+									<input type="submit" name="otherbooking_form" class="btn">
+								</form>
+								<br>
+
+
+								<div class="form-bg">
+
+			                    {% if otherbooking %}
+									{% for otherbooking in otherbooking %}
+									
+									<p><b>{{ otherbooking.heading }}</b> | Total Price : <b>{{ otherbooking.total_price }}</b> , Total price paid this time : <b>{{ otherbooking.price_paid }}</b>  ----{{ otherbooking.pub_date }}</p>
+									{% endfor %}
+								{% endif %}
+								</div>
+			                   
+			                </div>
+			            </div>
+		            </div>
+			</div>
+			
+		{% endif %}
+	{% endfor %}
+	<br>
+
+	</div>
+</div>
+<br>
+<!-- ############################Afterbook end ##################### -->
+
+
+
+<div class="container-fluid">
+	<div class="row bg-colr">
+		
+			<div class="col-md-6">
+			{% for comment in comment %}
+				<p><b>Quoted Price</b> : {{ comment.quoted_price }}</p>
+				<p><b>Calculations</b></p>
+			    <hr>
+			    <p>{{ comment.calculation|linebreaksbr }}</p>
+			{% endfor %}
+			
+			</div>
+			<div class="col-md-6">
+				{% for comment in comment %}
+				<p><b>Importaint Informations/Short Description</b></p>
+				<hr>
+				{{ comment.short_description|linebreaksbr }}
+				{% endfor %}
+			</div>
+			<div class="text-right">
+				<a class="btn btn-default" href="/travel-triangle/quote/{{ tripdetail.trip_id }}/imp-edit/"><span class="glyphicon glyphicon-pencil"></span>Change Imp Info</a>
+			</div>
+		
+	</div>
+</div>
+
+
+
+
+{% if comment %}
+
+<br>
+<div class="container-fluid">
+	<div class="row">
+
+		<form class="text-center" id="calldetail_form" method="post" action=""
+		                        enctype="multipart/form-data">
+
+			{% csrf_token %}
+			<div class="col-md-2"></div>	
+			<div class="col-md-2">
+				<div class="form-group">
+					<br>
+					<input id="id_call_number" maxlength="250" name="call_number" type="text" class="form-control input-sm" placeholder="Call Number" />
+				</div>
+			</div>
+		
+			<div class="col-md-4">
+				<div class="form-group">
+					<textarea cols="40" id="id_comment" maxlength="1000" name="comment" rows="3" class="form-control input-sm" placeholder="Write Comment" ></textarea>
+		        </div>
+	        </div>
+
+	        <div class="col-md-2">
+	        	<br>
+				<input type="submit" name="calldetail_form" class="btn btn-info btn-block">
+			</div>
+			<div class="col-md-2"></div>
+		</form>
+	</div>
+
+</div>
+
+{% else %}
+
+{% endif %}
+
+
+<br>
+<div class="container-fluid">
+	{% for calldetail in calldetail %}
+    <div class="row">
+    	<div class="col-md-2"></div>
+    	<div class="col-sm-8">
+	    	<div class="col-md-4">
+	    		<b><p>{{ calldetail.call_number }}</p> </b>
+	    		<p>{{ calldetail.pub_date }}</p>
+	    		<hr>
+	    	</div>
+
+	    	<div class="col-md-6">
+	    		<br>
+	    		<p>{{ calldetail.comment }}</p>
+
+	    	</div>
+	    	<br>
+	    	<div class="col-md-2"><b>- {{ calldetail.user.username }}</b></div>
+
+
+	    </div>
+    	<div class="col-md-2"></div>
+    </div>	
+    
+	{% endfor %}
+
+
+</div>
+
+
+
+
+{% if comment %}
+
+{% else %}
+
+<div class="container-fluid">
+		
+	<form class="text-center" id="comment_form" method="post" action=""
+	                        enctype="multipart/form-data">
+	{% csrf_token %}
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+	        			<input id="id_quoted_price" min="0" name="quoted_price" type="number" class="form-control input-sm" placeholder="Quote Price" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<select id="id_interested_status" name="interested_status" class="form-control input-sm">
+						
+							<option value="Not Interested">Not Interested</option>
+							<option value="Interested" selected="selected">Interested</option>
+							<option value="Highly Interested">Highly Interested</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<select id="id_trip_status" name="trip_status" class="form-control input-sm">
+							<option value="Not Booked" selected="selected">Not Booked</option>
+							<option value="Booked With Us">Booked With Us</option>
+							<option value="Booked With TT">Booked With TT</option>
+							<option value="Booked With Others">Booked With Others</option>
+							<option value="Trip Cancelled">Trip Cancelled</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<textarea cols="40" id="id_calculation" maxlength="2000" name="calculation" rows="10" class="form-control input-sm" placeholder="Calculations" ></textarea>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<textarea cols="40" id="id_short_description" maxlength="2000" name="short_description" rows="10" class="form-control input-sm" placeholder="Other Information" ></textarea>
+					</div>
+				</div>
+
+			</div>
+
+			<input type="submit" name="comment_form" value="Submit" class="btn btn-info btn-block">
+
+	</form>
+
+</div>
+<br>
+
+
+
+
+{% endif %}
+
+
+
+
+
+<br>
+<br>
+{% endblock %}

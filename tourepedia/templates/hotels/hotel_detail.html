@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ hotel.hotel_name }} {% endblock %}
+
+
+{% block static %}
+<style>
+ #map {
+        width: 100%;
+        height: 400px;
+     }
+ .wh-colr{
+ 	color: #fff;
+ }
+ .pad {
+ 	padding: 20px;
+ }
+ .pad-lg .col-sm-4{
+ 	padding: 0px;
+ }
+ .glyphicon-ok{
+ 	padding-right: 5px;
+ }
+
+ .pad p {
+ 	padding: 3px;
+ }
+</style>
+{% endblock %}
+
+{% block body %}
+
+{% include 'admin_nav.html' %}
+
+<br>
+<br>
+<br>
+
+<dir class="container-fluid">
+	<div class="row">
+		<br>
+		<div class="col-sm-12">
+			<div class="card card-2"> 
+				<div class="col-sm-12 col-md-12 col-lg-12 text-center"><h2>{{ hotel.hotel_name }}</h2>
+				<p> {{ hotel.hotel_address }} </p>
+				<p>{{ hotel.email_id }} | {{ hotel.mobile_number1 }} | {{ hotel.mobile_number2 }}</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 col-md-8">
+			<div id="myCarousel" class="my carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+
+	                <div class="item active">
+	                	<img src="{{ MEDIA_URL }}{{ hotel.main_img }}" alt="{{ hotel.hotel_name }}">               
+	                    <div class="carousel-caption">
+		                <h3 class="wh-colr">{{ hotel.hotel_name }}</h3>
+		                </div>
+		              
+		            </div>       
+	            
+		            {% for roomimg in hotelroomimg %}
+
+			            <div class="item">
+				            <img src="{{ MEDIA_URL }}{{ roomimg.room_img }}" alt="{{ hotel.hotel_name }}" >
+				            <div class="carousel-caption">
+				              <h3 class="wh-colr">{{ hotel.hotel_name }} : Interior </h3>
+				              
+				            </div>      
+			            </div>
+
+	                {% endfor %}
+
+	                {% for viewimg in hotelviewimg %}
+
+			            <div class="item">
+				            <img src="{{ MEDIA_URL }}{{ viewimg.view_img }}" alt="{{ hotel.hotel_name }}" >
+				            <div class="carousel-caption">
+				              <h3 class="wh-colr">{{ hotel.hotel_name }} : Views </h3>
+				              
+				            </div>      
+			            </div>
+
+	                {% endfor %}          
+                </div>
+
+            <!-- Left and right controls -->
+	            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+	              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	              <span class="sr-only">Previous</span>
+	            </a>
+	            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+	              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	              <span class="sr-only">Next</span>
+	            </a>
+	        </div>
+		</div>
+
+		<div class="col-sm-12 col-md-4 pad">
+
+			<p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Trusted partner of Tourepedia</p>
+			<p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Tourepedia's critiria fulfilled</p>
+			<p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Trusted partner of Tourepedia</p><br>
+
+
+			{% if user.is_active and user.is_staff %}
+
+			<div class="pad-lg">
+				<h4 class="text-left">Room Prices</h4><hr><br>
+				<div class="col-sm-3"><p><b>Room Type</b></p></div>
+				<div class="col-sm-3"><p><b>Price</b></p></div>
+				<div class="col-sm-3"><p><b>Extra Person</b></p></div>
+				<div class="col-sm-3"><p><b>Season Price</b></p></div>
+			</div>
+		{% for hotelprice in hotelprices %}
+			
+			<div class="pad-lg">
+				<br>
+				<div class="col-sm-3"><p>{{ hotelprice.room_type }}</p></div>
+				<div class="col-sm-3"><p>₹ {{ hotelprice.price }}</p></div>
+				<div class="col-sm-3"><p>₹ {{ hotelprice.extra_person_cost }}</p></div>
+				<div class="col-sm-3"><p>₹ {{ hotelprice.season_price }}</p></div>
+			</div>
+		{% endfor %}
+
+		{% for hotelseason in hotelseason %}
+			<div class="pad-lg">
+				<br>
+				<br>
+				<div class="col-sm-6">Season start date: {{ hotelseason.start }}</div>
+				<div class="col-sm-6">Season end date: {{ hotelseason.end }}</div>
+			</div>
+
+		{% endfor %}
+
+			{% endif %}
+			
+
+			
+
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-lg-8">
+			<div class="card card-2">
+	            <ul class="nav nav-tabs">
+	               <li class="active"><a data-toggle="tab" href="#about">About Hotel</a></li>
+	               <li><a data-toggle="tab" href="#amenity">Hotel Amenities</a></li>
+	               <li><a data-toggle="tab" href="#hotelpolicy">Location </a> </li>
+	               <li><a data-toggle="tab" href="#review">Hotel Review</a></li>
+	               
+	            </ul>
+
+                <div class="tab-content" style="padding:2em">
+		            <div id="about" class="tab-pane fade in active">
+		               	<p> {{ hotel.about_hotel|linebreaksbr }} </p>
+		            </div>
+
+	                <div id="amenity" class="tab-pane fade">
+	              
+	              		{% for hotelfacility in hotelfacility %}
+						<li>{{ hotelfacility.facility }}</li>
+
+					    {% endfor %}
+	                </div>
+
+	                <div id="hotelpolicy" class="tab-pane fade">
+	             		
+	                </div>
+	                <div id="review" class="tab-pane fade">
+	                    
+	                </div>
+                </div>
+            </div>
+            <br>
+
+            <div>
+                <h4>Location of {{ hotel.hotel_name }}</h4>
+	            <div id="map">
+					<script>
+					function myMap() {
+					  var mapCanvas = document.getElementById("map");
+					  var mapOptions = {
+					    center: new google.maps.LatLng(51.5, -0.2), 
+					    zoom: 10
+					  }
+					  var map = new google.maps.Map(mapCanvas, mapOptions);
+					}
+					</script>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 col-md-4 col-lg-4">
+		</div>
+	</div>
+</dir>
+
+{% include 'footer.html' %}
+{% endblock %}
+
+{% block script %}
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+{% endblock %}

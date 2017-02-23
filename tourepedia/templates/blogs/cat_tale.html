@@ -1,0 +1,85 @@
+{% extends 'blog_base.html' %}
+
+{% block title %}tourepedia Blogs : Stories {% endblock %}
+
+{% block static %}
+
+{% endblock %}
+
+
+{% block navbar %}
+{% include 'blog_nav.html' %}
+{% endblock %}
+
+{% block body %}
+{% load humanize %}
+
+<br>
+<br>
+<br><br><br>
+
+
+<div class="container-fluid">
+
+
+    <div class="row">
+    
+   
+            {% for title in titles %}
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+    	
+                  <div class="card card-1">
+                    <a href="/blog/{{ title.slug }}"><figure> <img src="{{ MEDIA_URL }}{{title.head_img}}" class="img-responsive" height="250" width="500" alt="{{ title.header }}"> </figure>
+                    <div style="padding:0.3em">
+                    {% if title.header|length >= 50 %}
+                    <h5> <strong>{{ title.header|slice:":50" }}..</strong> </a></h5>
+                    {% else %}
+                    <h5> <strong>{{ title.header }}</strong> </a></h5>
+
+                    {% endif %}
+                    <h6> Published by <strong> {{ title.publisher }} </strong>  | {{ title.pub_date|naturaltime }}|<strong> {{ title.expected_time }} read </strong></h6> 
+                    </div>
+                  </div>
+                </div>
+        
+            {% endfor %}
+        
+        
+      
+
+    
+    </div>
+    <hr>
+    <div class="pagination text-center">
+        <span class="step-links">
+            {% if titles.has_previous %}
+                <a href="?page={{ titles.previous_page_number }}"><button type="button" class="btn btn-info">Previous</button></a>
+            {% endif %}
+
+            <span class="current">
+                <b> Page {{ titles.number }} of {{ titles.paginator.num_pages }} </b>
+            </span>
+
+            {% if titles.has_next %}
+                <a href="?page={{ titles.next_page_number }}"><button type="button" class="btn btn-info">Next</button></a>
+            {% endif %}
+        </span>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block footer %}
+{% include 'blog_footer.html' %}
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

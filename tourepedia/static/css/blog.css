@@ -1,0 +1,355 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext);
+
+body {
+  font-family: 'Open Sans', 'sans-serif';
+  background-color: #fff;
+}
+
+h1, h2,h3,h4, {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  color: rgb(12,75,51);
+}
+
+a h4 {
+  color: rgb(68,183,139);
+}
+
+h5,h6 {
+  color: rgb(12,75,51);
+}
+
+p {
+  font-size: 16px;
+  color: rgb(12,75,51);
+}
+
+.container-fluid {
+    width: 96%;
+}
+
+.container-new {
+   width: 94%;
+}
+
+.container-old {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.mar {
+  margin-right: 10px;
+}
+@media screen and (max-width: 992px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 100%;
+  }
+  h1 {
+    font-size: 26px;  
+  }
+  h2 {
+    font-size: 24px;  
+  }
+  h3 {
+    font-size: 20px;  
+  }
+}
+
+@media screen and (max-width: 768px) {
+  p,.btn,input,div,span {
+    font-size: 100%;
+  }
+  h1 {
+    font-size: 22px;  
+  }
+  h2 {
+    font-size: 20px;  
+  }
+  h3 {
+    font-size: 18px;  
+  }
+  h4 {
+   font-size:  16px;
+  }
+  h5 {
+   font-size: 14px;
+  }
+  h6{
+  font-size: 12px;
+ }
+}
+
+.btn {
+    color: #fff;
+    background-color: rgb(68,183,139);
+    border-color: rgb(68,183,139);
+    border-radius: 0px;
+}
+
+.btn:hover {
+    color: #0c5d4e;
+    background-color: rgb(236, 248, 244);
+    border-color: rgb(68,183,139);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(68,183,139);
+}
+a:hover {
+  color: rgb(68,183,139);
+  text-decoration: underline;
+}
+
+
+figure{
+    overflow: hidden;
+}
+
+.hg-229 {
+   min-height: 229px;
+}
+
+.card a figure img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.card a figure:hover img {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.card-pad{
+  padding: 2em;
+}
+
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-2 {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.20);
+}
+
+.card-3 {
+  box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-4 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-5 {
+  box-shadow: 0 15px 30px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+
+
+@media screen and (max-width: 768px){
+ .header-mar {margin-top:-10em;} 
+ }
+
+@media screen and (min-width: 768px){
+  .header-mar {margin-top:-26em;}
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
+
+
+.nav-tabs {
+  display: inline-block;
+  border-bottom: none;
+  padding-top: 15px;
+  
+}
+.nav-tabs > li > a, 
+.nav-tabs > li > a:hover, 
+.nav-tabs > li > a:focus, 
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border: none;
+  border-radius: 0;
+}
+
+.nav-list { }
+.nav-list > li { 
+  padding: 0px;
+  text-decoration: none;
+   
+}
+ul {
+  list-style-type: none;
+}
+
+.list-inline > li {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.nav-list > li:last-child {} 
+.nav-list > li > a:hover { text-decoration: none; }
+.nav-list > li > a > span {
+  color: rgb(68,183,139);
+  padding: 7px;
+  display: block;
+}
+
+.mega-dropdown { position: static !important; }
+.mega-dropdown-menu {
+  padding: 20px 0px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.pagination {
+  display: block;
+}
+
+.navbar {margin-bottom: 0;margin: auto;width: 94%;margin-top: 1em;background-color:rgb(236, 248, 244);border: none;font-size: 15px !important;opacity: 1;}
+
+.navbar-fixed-top {
+    position: absolute;
+}
+
+.navbar-brand>img {
+    display: inline;
+    max-height: 50px;
+    width: auto;
+    margin-top: -15px;
+
+}
+
+  .navbar li a, .navbar .navbar-brand {
+      color: rgba(12,75,51,1) !important;
+  }
+  .navbar-nav li a:hover {
+      color: rgba(12,75,51,1) !important;
+  }
+  .navbar-nav li.active a {
+      color: rgb(68,183,139); !important;
+      background-color: #fff !important;
+  }
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    background-color: rgb(68,183,139);
+}
+
+
+ul {
+    padding:0;
+    list-style: none;
+}
+
+footer {
+  background-color: rgb(12,75,51);
+}
+
+.footer-foot p {
+  color: rgb(68,183,139);
+}
+
+.footer-social-icons {
+    display:block;
+    margin: 0 auto;
+}
+.social-icon {
+    color: #fff;
+}
+ul.social-icons {
+    margin-top: 10px;
+}
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+    height: 100px;
+}
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+.fa-facebook {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: rgb(12,75,51);
+}
+.fa-facebook:hover {
+    background-color: #3d5b99;
+}
+.fa-twitter {
+    padding:10px 12px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: rgb(12,75,51);
+}
+.fa-twitter:hover {
+    background-color: #00aced;
+}
+
+.fa-youtube {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: rgb(12,75,51);
+}
+.fa-youtube:hover {
+    background-color: #e64a41;
+}
+.fa-linkedin {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: rgb(12,75,51);
+}
+.fa-linkedin:hover {
+    background-color: #0073a4;
+}
+.fa-google-plus {
+    padding:10px 9px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: rgb(12,75,51);
+}
+.fa-google-plus:hover {
+    background-color: #e25714;
+}

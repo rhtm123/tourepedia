@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %} Be Adventures {% endblock %}
+
+{% block static %}
+<style>
+  body {
+      position: relative;
+  }
+  .affix {
+      top:0;
+      width: 100%;
+      z-index: 9999 !important;
+  }
+  .navbar {
+      margin-bottom: 0px;
+  }
+
+  .affix ~ .container-fluid {
+     position: relative;
+     top: 50px;
+  }
+  </style>
+
+
+{% endblock %}
+
+{% block body %}
+<body>
+
+{% include 'navbar.html' %}
+
+<br>
+	
+
+<br>
+<br><br>
+
+<nav class="navbar1 navbar-inverse" data-spy="affix" data-offset-top="10">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href=""><b>Category:Adventure</b></a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="/tour-packages/category/adventure/">Adventure </a></li>
+          <li><a href="/tour-packages/category/family/">Family</a></li>
+          <li><a href="/tour-packages/category/nature">Nature</a></li>
+          <li><a href="/tour-packages/category/honeymoon/">Honeymoon</a></li>
+          <li><a href="/tour-packages/category/wildlife/">Wildlife</a></li>
+          <li><a href="/tour-packages/category/hill-station/">Hill-Station</a></li>
+          <li><a href="/tour-packages/category/religious/">Religious</a></li>
+          <li><a href="/tour-packages/category/beaches/">Beaches</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid text-center">
+    <hr>
+    <br>
+    <div class="row">
+    {% if tourcategorys %} 
+        {% for tourdetail in tourcategorys %}
+            <div class="col-sm-6">
+            
+              <div class="thumbnail card card-1">
+              
+                  <a href="/tour-packages/{{ tourdetail.tourdetail.slug }}">
+                    <img src="{{ MEDIA_URL }}{{ tourdetail.tourdetail.main_img }}" class="person" alt="" width="auto" height="auto">
+                  
+                  <h4 class="text-center"><strong>{{ tourdetail.tourdetail.tour_name }} </strong></h4>
+                  </a>
+                  <div class="pad">
+                    <p> <strong>{{ tourdetail.tourdetail.tour_tagline }}</strong></p>
+                    <hr>
+                    <p> {{ tourdetail.tourdetail.tour_detail|slice:":300" }}....</p>
+
+              </div>
+            
+            </div>
+            
+        </div>
+        {% endfor %}
+    {% else %} 
+    <strong> There is not any tour package in this category.</strong>
+    {% endif %}
+<br>
+
+			
+</div>
+</div>
+
+<br>
+{% include 'footer.html' %}
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

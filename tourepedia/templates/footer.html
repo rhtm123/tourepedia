@@ -1,0 +1,96 @@
+<br><br>
+
+<footer>
+
+<div class="container-fluid">
+<div class="row nav footer text-left">  
+		<br>
+		
+
+	    <div class="col-sm-12 col-md-3 col-lg-3">
+	    	
+	    		<li> <h4> TOUREPEDIA </h4> </li>
+	    		
+	    	
+	    		<li><a href="#"> About Us </a> </li>
+	    		<li><a href="#">Blogs</a></li>
+	    		<li><a href="#">FAQs</a></li>
+	    		<li><a href="#">Terms & Conditions</a></li>
+	    		<li><a href="#">Privacy Policy</a></li>
+	    		<li><a href="#">Cancellations</a></li>    
+	    </div>
+	    
+
+	    <div class="col-sm-12 col-md-3 col-lg-3">
+	    	
+	    		<li> <h4> IMPORTANT LINKS </h4> </li>
+	    		
+	    		<li><a href="/places/kerala/tour-packages/">Kerala Tour Packages</a></li>
+	    		<li><a href="/places/shimla/tour-packages/">Shimla Tour Packages</a></li>
+	    		<li><a href="/tour-packages/category/adventure/">Adventure Trips</a></li>
+	    		<li><a href="/tour-packages/category/honeymoon/">Honeymoon Trips</a></li>
+	    		<li><a href="/school-trips/">School Trips</a></li>
+	    		<li><a href="/tour-packages/category/family/">Family Trips</a></li>
+	    		<li><a href="/tour-packages/category/wildlife">Wildlife </a></li>
+	    	
+	    </div>
+
+	    <div class="col-sm-12 col-md-6 col-lg-6">
+	    	
+	    		<li> <h4> RECENT BLOGS  </h4> </li>
+	    	
+	    		
+	    		{% for blog in blogs %}
+	    		<li>
+	    		<a href="/blog/{{ blog.slug }}">
+                    
+                     {{ blog.header }} </a>
+                </li>
+
+                {% endfor %}             
+	    </div>
+
+
+
+	    
+	</div>
+<br>
+
+</div>
+<br>
+
+</footer>
+<div class="foot">
+	<div class="container-fluid"> 
+		<div class="row">
+
+			<div class="col-sm-12 col-md-3 col-lg-3">
+			<br>
+				<a class="" href="/"><img src="{{ STATIC_URL }}img/logo1.png" alt="Tourepedia"></a>
+
+			<div class="footer-social-icons">
+			    <ul class="social-icons">
+			        <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+			        <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+			        <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+			        <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+			        <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+			    </ul>
+				</div>
+			</div>
+
+		    <div class="col-sm-12 col-md-6 col-lg-6">
+		    <br>
+		    	<h5><span class="glyphicon glyphicon-home"></span> C-9/7, Prem Plaza, Chitrakoot Marg, Vaishali Nagar, Jaipur</h5>
+		    	<h5><span class="glyphicon glyphicon-phone-alt"></span> 9005505374, 9828311142</h5>
+		    	<h5><span class="glyphicon glyphicon-envelope"></span> tourepedia111@gmail.com</h5>
+		        
+		    </div>
+
+		    <div class="col-sm-12 col-md-3 col-lg-3"></div>
+		</div> 
+		<div class="text-center"> 
+			<h5>@ 2016 TOUREPEDIA.COM</h5>
+		</div> 
+	</div>
+</div>

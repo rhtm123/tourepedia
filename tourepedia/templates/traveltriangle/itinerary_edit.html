@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block static %}
+<style type="text/css">
+	#id_text {
+		width: 1100px;
+		height: 11000px;
+	}
+</style>
+
+{% endblock %}
+
+{% block body %}
+<body>
+
+{% include 'admin_nav.html' %}
+
+<br>
+<br>
+<br>
+<br>
+<div class="container-fluid text-center">
+    <h2>Edit itinerary </h2>
+    <hr>
+    <br>
+    <form method="POST" class="post-form"> {% csrf_token %}
+
+    <div class="form-group">
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+
+    </div>
+
+    </form>
+
+</div>
+{% endblock %}
+

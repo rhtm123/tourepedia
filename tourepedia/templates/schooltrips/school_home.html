@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %} School Trips : Tourepedia {% endblock %}
+
+{% block body %}
+<body>
+{% include 'navbar.html' %}
+
+
+{% load humanize %}
+
+
+<div class="container-fluid text-center">
+    
+    <br>
+    <br>
+    <br>
+
+    <div class="text-center"><br><h3> SCHOOL TRIPS </h3> <hr><br></div>
+    <div class="row">
+    {% if schooltourdetails %} 
+        {% for schooltourdetail in schooltourdetails %}
+            <div class="col-sm-12 col-md-6 col-lg-4">
+            
+              <div class="thumbnail card card-2">
+              
+                  <a href="/school-trips/{{ schooltourdetail.slug }}">
+                    <figure>  <img src="{{ MEDIA_URL }}{{ schooltourdetail.main_img }}" class="img-responsive" alt="" width="auto" height="auto"> </figure>
+                    <div style="padding:10px">
+                    <h4 class="text-center"><strong>{{ schooltourdetail.tour_name|capfirst }} </strong></h4>
+                    </a>    
+                    <hr>
+                    <p> {{ schooltourdetail.tour_detail|truncatechars:200 }}</p>
+                    <hr>
+                    <div class="col-sm-6 text-left"> <h4> Number of days: {{ schooltourdetail.number_days }} </h4> </div>
+                     
+                    <div class="col-sm-6 text-right"> <h4>Price: ₹ {{ schooltourdetail.tour_price|intcomma }} </h4></div>
+
+
+                  </div>
+              </div>
+            
+            </div>
+            
+    
+        {% endfor %}
+    {% else %} 
+    <strong> kuch bhi nhi hai </strong>
+    {% endif %}
+<br>
+
+			
+</div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

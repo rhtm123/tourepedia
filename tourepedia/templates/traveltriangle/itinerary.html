@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block static %}
+
+{% endblock %}
+
+
+{% block body %}
+<body>
+
+{% include 'admin_nav.html' %}
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <h3 class="text-center"> {{ itinerary.place_name }} </h3>
+      <br>
+
+      {% for kuch in itinerary_day_wise %}
+        <h4><b>{{ kuch.heading_day|capfirst }}</b></h4>
+        <hr>
+        <p>{{ kuch.detail|capfirst }}</p>
+        <p>Total Running Distance: <b>{{ kuch.running_kms }}</b></p>
+        <br>
+      {% endfor %}
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+
+
+{% endblock %}

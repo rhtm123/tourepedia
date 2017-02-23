@@ -1,0 +1,50 @@
+
+<nav class="navbar navbar-default row navbar-fixed-top">
+  
+    <div class="navbar-header col-md-3">    
+        <a class="navbar-brand" href="/travel-triangle/in-progress/"> 
+
+          <img src="{{ STATIC_URL }}img/logo.png" alt="Tourepedia">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" >
+        <div class="col-md-9">
+
+            <ul class="nav navbar-nav navbar-right text-center">
+               
+
+            <li><a href="/hotels/">HOTEL SEARCH</a></li>
+
+              <li><a href="/travel-triangle/quote/">QUOTE SEARCH/NEW QUOTE</a></li>
+              <li><a href="/travel-triangle/itinerary/">ITINERARY SEARCH</a></li>
+            
+              
+              
+
+              <li class="dropdown dropdown-large">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-large row vdivide">
+                  
+                    <li>
+                      <ul class="text-center">
+                      {% if user.is_authenticated %}
+                        <li class="dropdown-header"><p> logged in as <b>{{ user.username }}</b></p></li>
+                        <li class="divider"></li>
+                        <li><a href="/accounts/logout"> Logout</a></li>
+                       
+                      {% else %}
+                        <li><a href="/accounts/register/">Register Here</a></li>
+                        <li><a href="/accounts/login/">Login</a></li>
+                      {% endif %}
+                      </ul>
+
+                    </li>
+                </ul>  
+              </li>
+  
+            </ul>
+        </div>
+    </div>
+  
+</nav>

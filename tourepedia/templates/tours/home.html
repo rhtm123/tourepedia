@@ -1,0 +1,529 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Tour-Packages, Adventure tour packages, family tour packages, Honeymoon tour packages, School trips, Corporate trips {% endblock %}
+
+{% block static %}
+<style type="text/css">
+  .container-new {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.carousel-caption1 {
+    position: absolute;
+    right: 25%;
+    top: 300px;
+    left: 25%;
+    z-index: 10;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: rgba(236, 248, 244, 0.7);
+}
+
+@media screen and (max-width: 768px){
+    .carousel-caption1 {
+    position: absolute;
+    right: 3%;
+    top: 150px;
+    left: 3%;
+    z-index: 10;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: rgba(236, 248, 244, 0.7);
+}
+ }
+
+.kuch {
+  color: rgb(236, 248, 244);
+}
+
+.scroll {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+.pad-bot {
+  padding: 10px;
+}
+
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+<body>
+
+{% include 'navbar.html' %}
+
+<div class="carousel slide">
+
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <div class="no-img">
+        <img src="static/img/header_desktop.jpg" alt="Valley of flowers">
+        </div>
+
+        <div class="no-img1">
+        <img src="static/img/header_mobile.jpg" alt="Valley of flowers">
+        </div>
+        <div class="carousel-caption1">
+        <h4>Hey, Happy Traveling!! </h4>
+
+          <div class="form-group">
+            {% csrf_token %}
+            <input id="search" name="search" class="form-control input-md" placeholder="Search for Packages" />
+            
+            <ul id="search_results" class="scroll list-group" style="list-style: none;"> </ul>
+          </div>
+          
+
+        </div>      
+      </div>    
+    </div>
+
+</div>
+
+
+<!--- ====================  What We do ================= -->
+<br><br>
+
+<div class="container-new text-center">
+
+   <div class="row service">
+
+            <div class="col-md-6 col-sm-12 col-lg-4">
+                <a class="" href="/tour-packages/">
+                    <figure><img class="img-responsive" src="{{ STATIC_URL }}img/tour_package.jpg" ></figure>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-sm-12 col-lg-4">        
+                <a class="" href="/tour-packages/category/honeymoon/">
+                    <figure><img class="img-responsive" src="{{ STATIC_URL }}img/honeymoon.jpg" alt=""></figure>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-sm-12 col-lg-4">
+                <a class="" href="/tour-packages/category/family/">
+                    <figure><img class="img-responsive" src="{{ STATIC_URL }}img/family.jpg" alt=""></figure>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-sm-12 col-lg-4">
+                <a class="" href="/school-trips/">
+                    <figure><img class="img-responsive" src="{{ STATIC_URL }}img/school-trip.jpg" alt=""></figure> 
+                </a>  
+            </div>
+
+            <div class="col-md-6 col-sm-12 col-lg-4">
+                <a class="" href="/tour-packages/category/hill-station/">
+                    <figure><img class="img-responsive" src="{{ STATIC_URL }}img/corporate.jpg" alt=""></figure>
+                </a>
+            </div>
+            
+            <div class="col-md-6 col-sm-12 col-lg-4">
+                <a class="" href="/tour-packages/category/religious/">
+                    <figure><img class="img-responsive" src="{{ STATIC_URL }}img/spiritual.jpg" alt=""></figure>
+                </a>
+            </div>
+          
+        </div>
+
+
+</div>
+
+<br>
+<!--================== =Destination ========= -->
+
+<div class="container-fluid text-center">
+
+  <h2>Destinations</h2>
+  <hr>
+  <br>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-8">
+      
+        <div id="my" class="carousel slide" data-ride="carousel">
+          
+
+
+        <!-- Wrapper for slides -->
+          <div class="carousel-inner my" role="listbox">
+              <div class="item active">
+                <img src="static/img/rajasthan.jpg" alt="Valley of flowers">
+                <div class="carousel-caption">
+                  <a href="/places/rajasthan/">
+                  <h4 class="header"> <strong> Rajasthan</strong></h4>
+                  <p class="kuch">Starting From: <strong>₹ 6000</strong></p>
+                  </a>
+                  
+
+                </div>      
+              </div>
+              <div class="item">
+                <img src="static/img/goa.jpg" alt="Chicago">
+                <div class="carousel-caption">
+                  <a href="/places/goa/">
+                  <h4 class="header"> <strong> Goa</strong></h4>
+                  <p class="kuch">Starting From: <strong>₹ 6000</strong></p>
+                  </a>           
+                </div>      
+              </div> 
+
+              <div class="item">
+                <img src="static/img/agra.jpg" alt="Chicago">
+                <div class="carousel-caption">
+                  <a href="places/agra/">
+                  <h4 class="header"> <strong> Agra </strong></h4>
+                  <p class="kuch">Starting From: <strong>₹ 6000</strong></p>
+                  </a>
+                  
+                  
+                </div>      
+              </div>  
+
+
+              <div class="item">
+                <img src="static/img/ooty.jpg" alt="Chicago">
+                <div class="carousel-caption">
+                  <a href="/places/ooty/">
+                  <h4 class="header"> <strong>Ooty</strong></h4>
+                  <p class="kuch">Starting From: <strong>₹ 6000</strong></p>
+                  </a>
+                  
+                  
+                </div>      
+              </div>  
+
+
+              <div class="item">
+                <img src="static/img/shimla.jpg" alt="Chicago">
+                <div class="carousel-caption">
+                  <a href="/places/shimla/">
+                  <h4 class="header"> <strong> Shimla</strong></h4>
+                  <p class="kuch">Starting From: <strong>₹ 6000</strong></p>
+                  </a>
+                  
+                  
+                </div>      
+              </div>  
+
+          </div>
+          <!--- +++ controller +++ -->
+          <a class="left carousel-control" href="#my" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#my" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+      </div>
+    </div>
+        
+
+    <div class="col-sm-12 col-md-4 col-lg-4">
+      <div class="item carousel-inner my">
+          <div class="no-img">
+          <img src="static/img/darjeeling.jpg" alt="Valley of flowers">
+          </div>
+          <div class="carousel-caption">
+            <a href="places/darjeeling/">
+            <h4 class="header"> <strong> Darjeeling </strong></h4>
+            <p class="kuch">Starting From: <strong>₹ 6000</strong></p>
+            </a>
+
+          </div>      
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4">
+
+      <div class="item my carousel-inner">
+          <div class="no-img">
+          <img class="" src="static/img/andaman.jpg" alt="Valley of flowers">
+          </div>
+            <div class="carousel-caption">
+              <a href="places/andaman/">
+              <h4 class="header"> <strong> Andaman</strong></h4>
+              <p class="kuch">Starting From: <strong>₹ 6000</strong></p>
+              </a>
+
+            </div>      
+      </div>
+
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-8">
+        <div class="item carousel-inner my">
+          <img src="static/img/kerala.jpg" alt="Valley of flowers">
+            <div class="carousel-caption">
+              <a href="places/kerala/">
+              <h4 class="header"> <strong>Kerala</strong></h4> 
+              <p class="kuch">Starting From: <strong>₹ 6000</strong></p> 
+              </a>
+
+            </div>      
+        </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+<br>
+<br>
+
+
+
+<!-- ================ WHY US ====================== -->
+
+<br>
+<br>
+
+<div class="container-fluid">
+<div class="text-center card card-2">
+  <h2>Why book with us?</h2>
+  <p><em> We are Amazing</em></p>
+<br>
+  <div class="row">
+    <div class="col-md-6 col-lg-3 col-sm-12">
+      
+      
+          <span class="glyphicon glyphicon-globe"></span>
+        <br>
+        <br>
+        <p> Emerging Online Travel Company</p>
+    </div>
+
+    <div class="col-md-6 col-lg-3 col-sm-12">
+     
+        <span class="glyphicon glyphicon-check"></span>
+        <br>
+        <br>
+        <p>Best Price Guarentee</p>
+      
+    </div>
+
+    <div class="col-md-6 col-lg-3 col-sm-12">
+        <span class="glyphicon glyphicon-certificate"></span>
+        <br>
+        <br>
+        <p>Trusted Brand</p>
+    </div>
+
+    <div class="col-md-6 col-lg-3 col-sm-12">
+        <span class="glyphicon glyphicon-heart"></span>
+        <br>
+        <br>
+       <p>Customer Satisfaction</p>
+     
+    </div>
+
+  </div>
+  <br>
+  <br>
+</div>
+</div>
+<br>
+<br>
+
+<!-- =========================Recent Blogs ================ -->
+
+<div class="container-fluid text-center">
+  <h2>Recent Blogs</h2>
+
+  <br>
+  <br>
+  {% for blog in blogs %}
+      <div class="col-lg-4 col-md-4 col-sm-12 pad-bot">
+          <a href="/blog/{{ blog.slug }}">
+            <figure><img src="{{ MEDIA_URL }}{{ blog.head_img }}"></figure>
+
+          <h4>  {{ blog.header }} </h4>
+          </a>
+        
+      </div>
+  {% endfor %}
+
+</div>
+
+<div class="text-center">
+<br><br>
+<a href="/blog/" class="btn .btn-lg" role="button">Read More Blogs</a>
+
+</div>
+
+
+<br>
+<br>
+
+<!-- ========================== costomers reviews =========== -->
+<div class="container-fluid text-center">
+    <h2>Traveler's Reviews</h2>
+
+    <br>
+    <div class="row">
+        <div id="myCar" class="mycar carousel slide col-lg-6 col-sm-12" data-ride="carousel">
+           
+        <h4>For Trips</h4>
+        <hr>
+          <!-- Wrapper for slides -->
+           
+
+          <div class="carousel-inner" role="listbox">
+            <div class="item active row">
+                <div class="col-sm-3 col-lg-3 col-md-3">
+                    
+                  <img src="{{ STATIC_URL }}img/shiva.jpg" class="img-responsive img-circle" >
+                
+                </div>
+                <div class="col-sm-9 col-lg-9 col-md-9 text-left"><p> <em>"Went to Goa with wingies planned by Thrilloax founders though thrilloax was not founded at that time. That was one of my best memorable trip." </em><br><span style="font-style:normal;">-Shiva Garg, Student, IIT Kanpur</span></p></div>
+                
+            </div>
+            {% for review in review_tour %}
+            <div class="item row">
+              {% if review.user_image %}
+              <div class="col-sm-3 col-lg-3 col-md-3 no-img">
+                <img src="{{ MEDIA_URL }}{{ review.user_image }}" class="img-responsive img-circle" >
+              </div>
+              {% else %}
+              <div class="col-sm-3 col-lg-3 col-md-3 no-img">
+                <img src="{{ STATIC_URL }}/img/default_user.jpg" class="img-responsive img-circle" >
+              </div>
+              {% endif %}
+              <div class="col-sm-9 col-lg-9 col-md-3 text-left"><p><em>"{{ review.review_text|truncatewords:30 }}"</em><br><span style="font-style:normal;">-{{ review.user.username }}, {{ review.tourdetail.tourdetail.tour_name }}</span></p></div>
+              
+            </div>
+            {% endfor %}
+
+          <ol class="carousel-indicators">
+            <li data-target="#myCar" data-slide-to="0" class="active"></li>
+            <li data-target="#myCar" data-slide-to="1"></li>
+            <li data-target="#myCar" data-slide-to="2"></li>
+            <li data-target="#myCar" data-slide-to="3"></li>
+            <li data-target="#myCar" data-slide-to="4"></li>
+          </ol>
+          </div>
+
+         
+
+          <!-- Left and right controls -->
+
+
+          
+        </div>
+
+         <div id="myCar2" class="mycar carousel slide col-lg-6 col-sm-12" data-ride="carousel">
+            
+         <h4>For School Trips</h4>
+         <hr>
+          <!-- Wrapper for slides -->
+
+          <div class="carousel-inner" role="listbox">
+
+            <div class="item active row">
+                
+
+                <div class="col-sm-9 col-lg-9 col-md-9 text-left"><p><em>"Went to Goa with wingies planned by Thrilloax founders though thrilloax was not founded at that time. That was one of my best memorable trip." </em><br><span style="font-style:normal;">-Shiva Garg, Student, IIT Kanpur</span></p></div>
+
+                <div class="col-sm-3 col-lg-3 col-md-3">
+                  <img src="{{ STATIC_URL }}img/shiva.jpg" class="img-responsive img-circle" >
+                </div>
+                
+            </div>
+            {% for review in review_school %}
+
+            <div class="item row">
+              
+              <div class="col-sm-9 col-lg-9 col-md-3 text-left"><p>"<em>{{ review.review_text|truncatewords:30 }}"</em><br><span style="font-style:normal;">--{{ review.user.username }}, {{ review.school_tour.tour_name }} </span></p></div>
+
+              {% if review.user_image %}
+              <div class="col-sm-3 col-lg-3 col-md-3 no-img">
+                <img src="{{ MEDIA_URL }}{{ review.user_image }}" class="img-responsive img-circle" >
+              </div>
+              {% else %}
+              <div class="col-sm-3 col-lg-3 col-md-3 no-img">
+                <img src="{{ STATIC_URL }}/img/default_user.jpg" class="img-responsive img-circle" >
+              </div>
+              {% endif %}
+              
+            </div>
+
+            {% endfor %}
+
+          <ol class="carousel-indicators">
+            <li data-target="#myCar2" data-slide-to="0" class="active"></li>
+            <li data-target="#myCar2" data-slide-to="1"></li>
+            <li data-target="#myCar2" data-slide-to="2"></li>
+            <li data-target="#myCar2" data-slide-to="3"></li>
+            <li data-target="#myCar2" data-slide-to="4"></li>
+             </ol>
+           
+          </div>
+
+           
+
+          <!-- Left and right controls -->
+          
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+
+
+{% endblock %}
+
+
+
+{% block script %}
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+$(".dropdown-toggle").dropdown();
+});
+
+</script>
+
+
+<script type="text/javascript">
+      $(function(){
+          $('#search').keyup(function(){
+              $.ajax({
+                  type: "POST",
+                  url: "search/",
+                  data: {
+                      'search_text' : $('#search').val(),
+                      'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+                  },
+                  success: searchSuccess,
+                  data_type: 'html'
+              });
+          });
+      });
+
+      function searchSuccess(data, textStatus, jqXHR)
+      {
+          $('#search_results').html(data);
+      }
+
+  </script>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-old">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"> 
+          <img src="{{ STATIC_URL }}img/logo.png" alt="Tourepedia">
+      </a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+      
+        <ul class="nav navbar-nav navbar-right">
+          
+            <li class="dropdown mega-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">BE INSPIRED <span class="caret"></span></a> 
+              <div class="dropdown-menu mega-dropdown-menu">
+                  <div class="container-fluid">
+                        <ul class="nav-list list-inline row">
+                            {% for inspired in nav_inspireds %}
+                            <li class="col-sm-3"><a href="/blog/{{ inspired.slug }}"><img src="{{ MEDIA_URL }}{{ inspired.head_img }}" width="280" class="img-responsive"><span>{{ inspired.header }}</span></a></li>
+                            {% endfor %}
+                        </ul>
+
+                        <ul class="nav-list">
+                          <li class="divider"></li>
+                          <li><a href="/blog/category/be-inspired">SEE ALL</a></li>
+                        </ul>
+                    </div>
+              </div>
+            </li>
+
+            <li class="dropdown mega-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">TRAVEL TALES <span class="caret"></span></a> 
+              <div class="dropdown-menu mega-dropdown-menu">
+                  <div class="container-fluid">
+                        <ul class="nav-list list-inline row">
+                            {% for tale in nav_tales %}
+                            <li class="col-sm-3"><a href="/blog/{{ tale.slug }}"><img src="{{ MEDIA_URL }}{{ tale.head_img }}" width="280" class="img-responsive"><span>{{ tale.header }}</span></a></li>
+                            {% endfor %}
+                        </ul>
+
+                        <ul class="nav-list">
+                          <li class="divider"></li>
+                          <li><a href="/blog/category/travel-tales">SEE ALL</a></li>
+                        </ul>
+                    </div>
+              </div>
+            </li>
+
+            <li class="dropdown mega-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">PHOTOBLOG <span class="caret"></span></a> 
+              <div class="dropdown-menu mega-dropdown-menu">
+                  <div class="container-fluid">
+                        <ul class="nav-list list-inline row">
+                            {% for photoblog in nav_photoblogs %}
+                            <li class="col-sm-3"><a href="/blog/{{ photoblog.slug }}"><img src="{{ MEDIA_URL }}{{ photoblog.head_img }}" width="280" class="img-responsive"><span>{{ photoblog.header }}</span></a></li>
+                            {% endfor %}
+                        </ul>
+
+                        <ul class="nav-list">
+                          <li class="divider"></li>
+                          <li><a href="/blog/category/photoblog">SEE ALL</a></li>
+                        </ul>
+                    </div>
+              </div>
+            </li>
+
+            <li class="dropdown mega-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">TRAVEL TIPS <span class="caret"></span></a> 
+              <div class="dropdown-menu mega-dropdown-menu">
+                  <div class="container-fluid">
+                        <ul class="nav-list list-inline row">
+                            {% for tip in nav_tips %}
+                            <li class="col-sm-3"><a href="/blog/{{ tip.slug }}"><img src="{{ MEDIA_URL }}{{ tip.head_img }}" width="280" class="img-responsive"><span>{{ tip.header }}</span></a></li>
+                            {% endfor %}
+                        </ul>
+
+                        <ul class="nav-list">
+                          <li class="divider"></li>
+                          <li><a href="/blog/category/travel-tips">SEE ALL</a></li>
+                        </ul>
+                    </div>
+              </div>
+            </li>
+
+
+            <li class="dropdown dropdown-large">
+
+                  {% if user.is_authenticated %}
+                  <li class="dropdown dropdown-large">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ user.username }} <b class="caret"></b></a>
+                      
+                      <ul class="dropdown-menu dropdown-menu-large row vdivide">
+                        
+                        <li class=" text-center">
+                          <ul>
+                           
+                            <li class="dropdown-header"><p> logged in as <b>{{ user.username }}</b></p></li>
+                            <li class="divider"></li>
+                            <li><a href="/accounts/logout"> Logout</a></li>
+                            
+                           
+
+                          </ul>
+
+                        </li>
+                    </ul>  
+                  </li>
+
+                  {% else %}
+
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-large row vdivide">
+                  
+                    <li>
+                      <ul class="text-center">
+                     
+                        <li><a href="/accounts/register/">Register Here</a></li>
+                        <li><a href="/accounts/login/">Login</a></li>
+                      
+                      </ul>
+
+                    </li>
+                </ul>  
+
+                  {% endif %}
+                  
+            </li>
+
+        </ul>
+    </div>
+  </div>
+</nav>

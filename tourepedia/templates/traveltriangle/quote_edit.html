@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<body>
+
+{% include 'admin_nav.html' %}
+
+<br>
+<br>
+<br>
+<br>
+<div class="conatiner-fluid text-center">
+    <h2>Edit Traveler Info</h2>
+    <hr>
+    <br>
+    <form method="POST" class="post-form"> {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+</div>
+
+
+{% endblock %}
+
+

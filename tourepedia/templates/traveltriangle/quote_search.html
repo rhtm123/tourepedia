@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.search{
+			padding-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	{% if quotes.count > 0 %}
+	{% for quote in quotes %}
+		<li class="search list-group-item"><a href="/travel-triangle/quote/{{ quote.trip_id }}">{{ quote.trip_id }}|{{ quote.places }}</a></li>
+	{% endfor %}
+	{% else %}
+	<br>
+	<p>KUCH BHI NAHI HAI</p>
+
+	{% endif %}
+</body>
+</html>

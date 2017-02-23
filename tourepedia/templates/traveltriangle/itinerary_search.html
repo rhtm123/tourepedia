@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.search{
+			padding-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	{% if itinerarys.count > 0 %}
+	{% for itinerary in itinerarys %}
+		<li class="search list-group-item"><a href="/travel-triangle/itinerary/{{ itinerary.slug }}">{{ itinerary.place_name }}</a></li>
+	{% endfor %}
+	{% else %}
+	<br>
+	<p>KUCH BHI NAHI HAI</p>
+
+	{% endif %}
+</body>
+</html>
+
+
